@@ -1,0 +1,54 @@
+record(ai, "$(user):ps-1") {
+    field(DESC, "Power Supply SP 1")
+    field(INP, "0")
+    field(EGU, "A")
+    field(FLNK, "$(user):fo")
+}
+
+record(ai, "$(user):ps-2") {
+    field(DESC, "Power Supply SP 2")
+    field(INP, "0")
+    field(EGU, "A")
+    field(FLNK, "$(user):fo")
+}
+
+
+record(fanout, "$(user):fo") {
+    field(DESC, "Fanout")
+    field(SELM, "All")
+    field(LNK1, "$(user):avg-calc")
+    field(LNK2, "$(user):blnc-calc")
+}
+
+record(calc, "$(user):avg-calc") {
+    field(DESC, "Average Calculation")
+    field(CALC, "(a+b)/2")
+    field(INPA, "$(user):ps-1")
+    field(INPB, "$(user):ps-2")
+    field(FLNK, "$(user):avg")
+}
+
+record(calc, "$(user):blnc-calc") {
+    field(DESC, "Balance Calculation")
+    field(CALC, "(a-b)/(a+b)")
+    field(INPA, "$(user):ps-1")
+    field(INPB, "$(user):ps-2")
+    field(FLNK, "$(user):blnc")
+}
+
+record(ao, "$(user):avg") {
+    field(DESC, "Average")
+    field(EGU,  "A")
+    # field(VAL,  "0.000")
+    field(SCAN, "Passive")
+    field(OMSL, "closed_loop")
+    field(DOL, "$(user):avg-calc")
+}
+record(ao, "$(user):blnc") {
+    field(DESC, "Balance")
+    field(EGU,  "A")
+    # field(VAL,  "0.000")
+    field(SCAN, "Passive")
+    field(OMSL, "closed_loop")
+    field(DOL, "$(user):blnc-calc")
+}
