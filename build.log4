@@ -1,0 +1,26 @@
+make -C ./configure install
+make[1]: Entering directory '/home/iocadm/workspace/ps_demo/configure'
+make -C O.linux-x86_64 -f ../Makefile TOP=../.. \
+    T_A=linux-x86_64 install
+make[2]: Entering directory '/home/iocadm/workspace/ps_demo/configure/O.linux-x86_64'
+perl -CSD /opt/epics/base-7.0.9/bin/linux-x86_64/convertRelease.pl checkRelease
+make[2]: Leaving directory '/home/iocadm/workspace/ps_demo/configure/O.linux-x86_64'
+make[1]: Leaving directory '/home/iocadm/workspace/ps_demo/configure'
+make -C ./psApp install
+make[1]: Entering directory '/home/iocadm/workspace/ps_demo/psApp'
+make -C ./src install
+make[2]: Entering directory '/home/iocadm/workspace/ps_demo/psApp/src'
+make -C O.linux-x86_64 -f ../Makefile TOP=../../.. \
+    T_A=linux-x86_64 install
+make[3]: Entering directory '/home/iocadm/workspace/ps_demo/psApp/src/O.linux-x86_64'
+make[3]: Nothing to be done for 'install'.
+make[3]: Leaving directory '/home/iocadm/workspace/ps_demo/psApp/src/O.linux-x86_64'
+make[2]: Leaving directory '/home/iocadm/workspace/ps_demo/psApp/src'
+make -C ./Db install
+make[2]: Entering directory '/home/iocadm/workspace/ps_demo/psApp/Db'
+make -C O.linux-x86_64 -f ../Makefile TOP=../../.. \
+    T_A=linux-x86_64 install
+make[3]: Entering directory '/home/iocadm/workspace/ps_demo/psApp/Db/O.linux-x86_64'
+make[3]: Leaving directory '/home/iocadm/workspace/ps_demo/psApp/Db/O.linux-x86_64'
+make[2]: Leaving directory '/home/iocadm/workspace/ps_demo/psApp/Db'
+make[1]: Leaving directory '/home/iocadm/workspace/ps_demo/psApp'

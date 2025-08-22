@@ -1,0 +1,50 @@
+record(ao, "$(user):ps-rev-1") {
+    field(DESC, "Power Supply SP 1")
+    field(EGU, "A")
+    field(LOPR, "0")
+    field(HOPR, "100")
+    field(SCAN, "Passive")
+    field(OMSL, "closed_loop")
+    field(DOL, "$(user):ps-1-calc")
+}
+
+record(ao, "$(user):ps-rev-2") {
+    field(DESC, "Power Supply SP 2")
+    field(EGU, "A")
+    field(LOPR, "0")
+    field(HOPR, "100")
+    field(SCAN, "Passive")
+    field(OMSL, "closed_loop")
+    field(DOL, "$(user):ps-2-calc")
+}
+
+record(calc, "$(user):ps-1-calc") {
+    field(DESC, "PS 1 Calculation")
+    field(CALC, "a*(1+b)")
+    field(INPA, "$(user):avg-rev CP")
+    field(INPB, "$(user):blnc-rev CP")
+    field(FLNK, "$(user):ps-rev-1")
+}
+
+record(calc, "$(user):ps-2-calc") {
+    field(DESC, "PS 2 Calculation")
+    field(CALC, "a*(1-b)")
+    field(INPA, "$(user):avg-rev CP")
+    field(INPB, "$(user):blnc-rev CP")
+    field(FLNK, "$(user):ps-rev-2")
+}
+
+record(ai, "$(user):avg-rev") {
+    field(DESC, "Average")
+    field(EGU,  "A")
+    field(INP,  "0")
+    field(LOPR, "0")
+    field(HOPR, "100")
+}
+record(ai, "$(user):blnc-rev") {
+    field(DESC, "Balance")
+    field(EGU,  "")
+    field(INP,  "0")
+    field(LOPR, "-1")
+    field(HOPR, "1")
+}
