@@ -2,7 +2,7 @@ record(ai, "$(user):ps-1") {
     field(DESC, "Power Supply SP 1")
     field(INP, "0")
     field(EGU, "A")
-    field(FLNK, "$(user):fo")
+    # field(FLNK, "$(user):fo")
     # field(LOLO, "0")
     # field(HIGH, "80")
     # field(HIHI, "100")
@@ -17,32 +17,32 @@ record(ai, "$(user):ps-2") {
     field(DESC, "Power Supply SP 2")
     field(INP, "0")
     field(EGU, "A")
-    field(FLNK, "$(user):fo")
+    # field(FLNK, "$(user):fo")
     field(LOPR, "0")
     field(HOPR, "100")
 }
 
 
-record(fanout, "$(user):fo") {
-    field(DESC, "Fanout")
-    field(SELM, "All")
-    field(LNK1, "$(user):avg-calc")
-    field(LNK2, "$(user):blnc-calc")
-}
+# record(fanout, "$(user):fo") {
+#     field(DESC, "Fanout")
+#     field(SELM, "All")
+#     field(LNK1, "$(user):avg-calc")
+#     field(LNK2, "$(user):blnc-calc")
+# }
 
 record(calc, "$(user):avg-calc") {
     field(DESC, "Average Calculation")
     field(CALC, "(a+b)/2")
-    field(INPA, "$(user):ps-1")
-    field(INPB, "$(user):ps-2")
+    field(INPA, "$(user):ps-1 CP")
+    field(INPB, "$(user):ps-2 CP")
     field(FLNK, "$(user):avg")
 }
 
 record(calc, "$(user):blnc-calc") {
     field(DESC, "Balance Calculation")
     field(CALC, "(a-b)/(a+b)")
-    field(INPA, "$(user):ps-1")
-    field(INPB, "$(user):ps-2")
+    field(INPA, "$(user):ps-1 CP")
+    field(INPB, "$(user):ps-2 CP")
     field(FLNK, "$(user):blnc")
 }
 
