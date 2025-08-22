@@ -27,21 +27,25 @@
   </widget>
   <widget type="scaledslider" version="2.0.0">
     <name>Scaled Slider</name>
-    <pv_name>pva://iocadm:ps-1</pv_name>
+    <pv_name>P1:PS:CURRENT_SP</pv_name>
     <x>110</x>
     <y>130</y>
     <width>55</width>
     <height>400</height>
     <horizontal>false</horizontal>
+    <maximum>10.0</maximum>
+    <limits_from_pv>false</limits_from_pv>
   </widget>
   <widget type="scaledslider" version="2.0.0">
     <name>Scaled Slider_1</name>
-    <pv_name>pva://iocadm:ps-2</pv_name>
+    <pv_name>P2:PS:CURRENT_SP</pv_name>
     <x>230</x>
     <y>130</y>
     <width>55</width>
     <height>400</height>
     <horizontal>false</horizontal>
+    <maximum>10.0</maximum>
+    <limits_from_pv>false</limits_from_pv>
   </widget>
   <widget type="label" version="2.0.0">
     <name>Label_2</name>
@@ -51,7 +55,7 @@
   </widget>
   <widget type="meter" version="3.0.0">
     <name>Meter</name>
-    <pv_name>pva://iocadm:avg</pv_name>
+    <pv_name>epicsuser:avg</pv_name>
     <x>350</x>
     <y>140</y>
     <precision>2</precision>
@@ -74,7 +78,7 @@
   </widget>
   <widget type="meter" version="3.0.0">
     <name>Meter_1</name>
-    <pv_name>pva://iocadm:blnc</pv_name>
+    <pv_name>epicsuser:blnc</pv_name>
     <x>360</x>
     <y>350</y>
     <format>1</format>

@@ -1,21 +1,40 @@
-record(ao, "$(user):ps-rev-1") {
+record(ai, "$(user):ps-rev-1") {
     field(DESC, "Power Supply SP 1")
+    field(VAL, "1")
+    field(INP, "$(user):ps-1-calc")
     field(EGU, "A")
     field(LOPR, "0")
     field(HOPR, "100")
-    field(SCAN, "Passive")
-    field(OMSL, "closed_loop")
-    field(DOL, "$(user):ps-1-calc")
+
 }
 
-record(ao, "$(user):ps-rev-2") {
+record(ai, "$(user):ps-rev-2") {
     field(DESC, "Power Supply SP 2")
+    field(VAL, "1")
+    field(INP, "$(user):ps-2-calc")
     field(EGU, "A")
     field(LOPR, "0")
     field(HOPR, "100")
-    field(SCAN, "Passive")
-    field(OMSL, "closed_loop")
-    field(DOL, "$(user):ps-2-calc")
+}
+
+record(calc, "$(user):avg-rev-calc") {
+    field(DESC, "Average Calculation")
+    field(CALC, "(a+b)/2")
+    field(INPA, "$(user):ps-rev-1 CP")
+    field(INPB, "$(user):ps-rev-2 CP")
+    field(FLNK, "$(user):avg-rev")
+    field(DISV, "1")
+    field(SDIS, "$(user):ps-1-calc.PACT")
+}
+
+record(calc, "$(user):blnc-rev-calc") {
+    field(DESC, "Balance Calculation")
+    field(CALC, "(a-b)/(a+b)")
+    field(INPA, "$(user):ps-rev-1 CP")
+    field(INPB, "$(user):ps-rev-2 CP")
+    field(FLNK, "$(user):blnc-rev")
+    field(DISV, "1")
+    field(SDIS, "$(user):ps-1-calc.PACT")
 }
 
 record(calc, "$(user):ps-1-calc") {
@@ -24,6 +43,8 @@ record(calc, "$(user):ps-1-calc") {
     field(INPA, "$(user):avg-rev CP")
     field(INPB, "$(user):blnc-rev CP")
     field(FLNK, "$(user):ps-rev-1")
+    field(DISV, "1")
+    field(SDIS, "$(user):avg-rev-calc.PACT")
 }
 
 record(calc, "$(user):ps-2-calc") {
@@ -32,19 +53,23 @@ record(calc, "$(user):ps-2-calc") {
     field(INPA, "$(user):avg-rev CP")
     field(INPB, "$(user):blnc-rev CP")
     field(FLNK, "$(user):ps-rev-2")
+    field(DISV, "1")
+    field(SDIS, "$(user):avg-rev-calc.PACT")
 }
 
 record(ai, "$(user):avg-rev") {
     field(DESC, "Average")
     field(EGU,  "A")
-    field(INP,  "0")
+    field(INP,  "$(user):avg-rev-calc")
+    field(VAL, "0")
     field(LOPR, "0")
     field(HOPR, "100")
 }
 record(ai, "$(user):blnc-rev") {
     field(DESC, "Balance")
     field(EGU,  "")
-    field(INP,  "0")
+    field(VAL, "0")
+    field(INP,  "$(user):blnc-rev-calc")
     field(LOPR, "-1")
     field(HOPR, "1")
 }
