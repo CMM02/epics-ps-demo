@@ -16,6 +16,7 @@ ps_registerRecordDeviceDriver(pdbbase)
 ## Load record instances
 dbLoadRecords("../../psApp/Db/ps.db","user=iocadm")
 dbLoadRecords("../../psApp/Db/ps-rev.db","user=iocadm")
+dbLoadRecords("../../psApp/Db/test.db","user=iocadm")
 
 iocInit()
 
