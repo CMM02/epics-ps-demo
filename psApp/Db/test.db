@@ -1,0 +1,32 @@
+record(ai, "$(user):a+1") {
+    field(DESC, "description")
+    field(INP,  "$(user):calc+1")  
+    field(DISV, "0")
+    field(SDIS, "$(user):calc+1.PACT")
+    
+}
+
+record(calc, "$(user):calc-1") {
+    field(DESC, "description")
+    field(CALC, "a-1")
+    field(INPA, "$(user):a+1 CP")
+    field(FLNK, "$(user):a-1")
+    field(DISV, "1")
+    field(SDIS, "$(user):calc+1.PACT")
+}
+
+record(ai, "$(user):a-1") {
+    field(DESC, "description")
+    field(INP,  "$(user):calc-1")
+    field(DISV, "0")
+    field(SDIS, "$(user):calc-1.PACT")
+}
+
+record(calc, "$(user):calc+1") {
+    field(DESC, "description")
+    field(CALC, "a+1")
+    field(INPA, "$(user):a-1 CP")
+    field(FLNK, "$(user):a+1")
+    field(DISV, "1")
+    field(SDIS, "$(user):calc-1.PACT")
+}
